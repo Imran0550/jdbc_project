@@ -36,5 +36,30 @@ public class P03_LibraryDBTest {
         // compare them
 
         Assertions.assertEquals(expectedData,actualData);
+
+        DB_Util.destroy();
+    }
+
+
+    @Test
+    public void testBookCount(){
+        // create connection
+
+        DB_Util.createConnection(url,username,password);
+
+        //run query
+        DB_Util.runQuery("select count(*) from books");
+
+        //get result
+        String actualBookCount = DB_Util.getFirstRowFirstColumn();
+
+
+        //get UI result
+        String expectCount = "23337";
+
+        //compare them
+        Assertions.assertEquals(expectCount,actualBookCount);
+
+        DB_Util.destroy();
     }
 }
